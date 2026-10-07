@@ -1,0 +1,21 @@
+name: Auto Commit
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Make changes and commit
+      run: |
+        git config --global user.name "yahyaemod887-alt"
+        git config --global user.email "yahyaemod887@gmail.com"
+        echo "Auto update - $(date)" >> activity.txt
+        git add activity.txt
+        git commit -m "Automated commit to boost profile activity"
+        git push
